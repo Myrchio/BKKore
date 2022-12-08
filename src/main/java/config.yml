@@ -1,0 +1,28 @@
+timed-blocks:
+
+  # use format MATERIAL:DURATION
+  blocks:
+    - OBSIDIAN:10
+    - WEB:10
+  hologram: true
+  hologram-high: 0.8
+
+no-first-fall-damage:
+  enabled: true
+
+  # use the region where players never take fall damage from (X:Y:Z:world)
+  position-A: 0:0:0:world
+  position-B: 0:0:0:world
+
+kill-reward:
+  enabled: false
+
+  # use format N-KILL:"COMMAND" or N-KILL:"COMMAND":"MESSAGE"
+  every-n-kill-run:
+    - 5:"give {player} 1 emerald"
+    - 10:"emc bounty give {player} 12000"
+
+
+
+
+

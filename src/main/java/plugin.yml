@@ -1,0 +1,7 @@
+main: it.blastmc.Main
+name: BKKore
+version: 0.0.1
+softdepend: [PlaceholderAPI]
+commands:
+  fplayers:
+    description: View all fallen players
