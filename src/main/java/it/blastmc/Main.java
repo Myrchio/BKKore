@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
     private static Main instance;
     public final FallenPlayerList fallenPlayerList = new FallenPlayerList();
-    public final String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + ChatColor.BOLD + "BKKore" + ChatColor.DARK_GRAY + "]" + ChatColor.WHITE;
+    public final String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + ChatColor.BOLD + "BKKore" + ChatColor.DARK_GRAY + "] " + ChatColor.WHITE;
     public Main() {
         instance = this;
     }

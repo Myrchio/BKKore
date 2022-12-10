@@ -49,11 +49,13 @@ public class NoFirstFallDamageListener implements Listener {
 
     @EventHandler
     public void onTeleportEvent(final PlayerTeleportEvent p) {
-        Position po = new Position(p.getTo());
-        Location l1 = BuildLocation(pos1);
-        Location l2 = BuildLocation(pos2);
-        if (po.isInRegion(l1, l2)){
-            fallenPlayers.remove(p.getPlayer().getUniqueId());
+        if (! p.getCause().equals(PlayerTeleportEvent.TeleportCause.ENDER_PEARL)){
+            Position po = new Position(p.getTo());
+            Location l1 = BuildLocation(pos1);
+            Location l2 = BuildLocation(pos2);
+            if (po.isInRegion(l1, l2)){
+                fallenPlayers.remove(p.getPlayer().getUniqueId());
+            }
         }
     }
 
@@ -62,7 +64,7 @@ public class NoFirstFallDamageListener implements Listener {
         if (e.getEntity() instanceof Player){
             Player p = ((Player) e.getEntity()).getPlayer();
             e.getEntity().getFallDistance();
-            if (e.getCause() == EntityDamageEvent.DamageCause.FALL && !fallenPlayers.search(p.getUniqueId())) {
+            if (e.getCause() == EntityDamageEvent.DamageCause.FALL && !fallenPlayers.search(p.getUniqueId()) && p.getFallDistance()!=0) {
                 e.setCancelled(true);
                 fallenPlayers.add(p.getUniqueId());
             }

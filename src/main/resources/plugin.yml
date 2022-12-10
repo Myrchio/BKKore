@@ -1,6 +1,6 @@
 main: it.blastmc.Main
 name: BKKore
-version: 0.0.1
+version: 0.0.2
 softdepend: [PlaceholderAPI]
 commands:
   fplayers:
