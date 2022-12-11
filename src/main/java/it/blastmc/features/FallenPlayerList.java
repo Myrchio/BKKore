@@ -1,6 +1,7 @@
 package it.blastmc.features;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -37,8 +38,12 @@ public class FallenPlayerList {
     public String toString() {
         StringBuilder text = new StringBuilder();
         for (UUID uuid : fallenPlayers) {
-            text.append(Bukkit.getPlayer(uuid).getDisplayName()).append("\n");
+            String s =  "" + ChatColor.WHITE + ", ";
+            text.append(Bukkit.getPlayer(uuid).getDisplayName()).append(s);
         }
-        return text.toString();
+        if (text.length() > 0)
+            return text.substring(0, text.length()-2);
+        else
+            return text.toString();
     }
 }

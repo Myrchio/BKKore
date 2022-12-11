@@ -3,5 +3,5 @@ name: BKKore
 version: 0.0.2
 softdepend: [PlaceholderAPI]
 commands:
-  fplayers:
-    description: View all fallen players
+  bkk:
+    description: Use BKKore's commands
