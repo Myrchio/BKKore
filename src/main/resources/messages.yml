@@ -1,0 +1,7 @@
+messages:
+  prefix: "&a&lBKKore&8: &f"
+  help:
+    - "Comandi disponibili: "
+    - " /bkk fp &7- &aGuarda i giocatori caduti"
+  fallen-player: "Players caduti (&a{size}&f)"
+  no-perms: "&cNon hai il permesso!"

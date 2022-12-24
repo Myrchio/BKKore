@@ -1,4 +1,4 @@
-package it.blastmc.features.listener;
+package it.blastmc.features.listeners;
 
 import it.blastmc.Main;
 import it.blastmc.features.FallenPlayerList;
@@ -50,6 +50,9 @@ public class NoFirstFallDamageListener implements Listener {
     @EventHandler
     public void onTeleportEvent(final PlayerTeleportEvent p) {
         if (! p.getCause().equals(PlayerTeleportEvent.TeleportCause.ENDER_PEARL)){
+            if (p.getPlayer().getFallDistance() != 0){
+                p.getPlayer().setFallDistance(0);
+            }
             Position po = new Position(p.getTo());
             Location l1 = BuildLocation(pos1);
             Location l2 = BuildLocation(pos2);

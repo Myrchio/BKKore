@@ -1,26 +1,34 @@
 package it.blastmc;
 
-import it.blastmc.commands.FallenPlayersCommand;
+import it.blastmc.commands.FallenPlayerCommands;
 import it.blastmc.features.FallenPlayerList;
-import it.blastmc.features.listener.BlockTimedListener;
-import it.blastmc.features.listener.NoFirstFallDamageListener;
+import it.blastmc.features.listeners.BlockTimedListener;
+import it.blastmc.features.listeners.NoFirstFallDamageListener;
 import it.blastmc.hook.PlaceHolderAPIHook;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Main extends JavaPlugin {
     private static Main instance;
+    private FileConfiguration msgConfig;
     public final FallenPlayerList fallenPlayerList = new FallenPlayerList();
-    public final String prefix = ""+ ChatColor.GREEN + ChatColor.BOLD + "BKKore " + ChatColor.DARK_GRAY + "» " + ChatColor.WHITE;
     public Main() {
         instance = this;
     }
     @Override
     public void onEnable() {
-        System.out.println(prefix + "Plugin abilitato con successo!");
+        System.out.println(getPrefix() + "Plugin abilitato con successo!");
         getConfig().options().copyDefaults(true);
         saveConfig();
+        msgConfig = loadCustomConfig("messages.yml", new File(getDataFolder(), "messages.yml"));
         getEvents();
         getCommands();
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
@@ -29,7 +37,7 @@ public class Main extends JavaPlugin {
     }
     @Override
     public void onDisable() {
-        System.out.println(prefix + "Plugin disabilitato con successo!");
+        System.out.println(getPrefix() + "Plugin disabilitato con successo!");
     }
 
     private void getEvents(){
@@ -42,7 +50,47 @@ public class Main extends JavaPlugin {
         }
     }
     private void getCommands(){
-        this.getCommand("bkk").setExecutor(new FallenPlayersCommand());
+        new FallenPlayerCommands();
     }
+
+    public FileConfiguration loadCustomConfig(String resourceName, File out) {
+        try {
+            InputStream in = getResource(resourceName);
+
+            if (!out.exists()){
+                    getDataFolder().mkdir();
+                    out.createNewFile();
+            }
+            FileConfiguration file = YamlConfiguration.loadConfiguration(out);
+            if (in!=null){
+                InputStreamReader inReader = new InputStreamReader(in);
+                file.setDefaults(YamlConfiguration.loadConfiguration(inReader));
+                file.options().copyDefaults(true);
+                    file.save(out);
+            }
+            return file;
+
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void reloadConfig() {
+        super.reloadConfig();
+        msgConfig = loadCustomConfig("messages.yml", new File(getDataFolder(), "messages.yml"));
+    }
+
+    public String getPrefix(){
+        return getMessages().getString("messages.prefix");
+    }
+
+    public FileConfiguration getMessages(){
+        if (this.msgConfig == null) {
+            this.reloadConfig();
+        }
+        return this.msgConfig;
+    }
+
     public static Main getInstance() {return instance;}
 }

@@ -1,3 +1,13 @@
+database:
+  ip: "localhost"
+  port: 3306
+  database: "bkk"
+  user: "root"
+  password: ""
+
+bounty:
+  enabled: true
+
 timed-blocks:
 
   # use format MATERIAL:DURATION

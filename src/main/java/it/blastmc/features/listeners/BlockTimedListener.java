@@ -1,4 +1,4 @@
-package it.blastmc.features.listener;
+package it.blastmc.features.listeners;
 
 import it.blastmc.Main;
 import me.filoghost.holographicdisplays.api.HolographicDisplaysAPI;
@@ -20,7 +20,6 @@ public class BlockTimedListener implements Listener {
 
     private final Plugin plugin = Main.getPlugin(Main.class);
     private final ArrayList<String> blocksTimed = new ArrayList<>(plugin.getConfig().getStringList("timed-blocks.blocks"));
-
     private final boolean displayHologram = plugin.getConfig().getBoolean("timed-blocks.hologram");
     private final float high = (float) plugin.getConfig().getDouble("timed-blocks.hologram-high");
 
