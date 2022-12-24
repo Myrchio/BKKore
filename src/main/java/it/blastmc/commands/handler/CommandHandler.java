@@ -18,15 +18,15 @@ public abstract class CommandHandler extends BukkitCommand implements CommandExe
 
     private final FileConfiguration messages = Main.getPlugin(Main.class).getMessages();
 
-    protected CommandHandler(String name) {
+    public CommandHandler(String name) {
         this(name, 0);
     }
 
-    protected CommandHandler(String name, int requiredArgs) {
+    public CommandHandler(String name, int requiredArgs) {
         this(name, requiredArgs, requiredArgs);
     }
 
-    protected CommandHandler(String name, int minArgs, int maxArgs) {
+    public CommandHandler(String name, int minArgs, int maxArgs) {
         super(name);
 
         this.minArgs = minArgs;
