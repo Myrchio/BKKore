@@ -1,5 +1,6 @@
 package it.blastmc;
 
+import it.blastmc.commands.BKKCommands;
 import it.blastmc.commands.FallenPlayerCommands;
 import it.blastmc.features.FallenPlayerList;
 import it.blastmc.features.listeners.BlockTimedListener;
@@ -51,6 +52,7 @@ public class Main extends JavaPlugin {
     }
     private void getCommands(){
         new FallenPlayerCommands();
+        new BKKCommands();
     }
 
     public FileConfiguration loadCustomConfig(String resourceName, File out) {

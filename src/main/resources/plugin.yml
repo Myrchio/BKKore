@@ -2,6 +2,3 @@ main: it.blastmc.Main
 name: BKKore
 version: 0.0.3
 softdepend: [PlaceholderAPI]
-commands:
-  bkk:
-    description: Use BKKore's commands

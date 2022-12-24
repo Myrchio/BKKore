@@ -16,13 +16,13 @@ public class FallenPlayerCommands {
             public boolean onCommand(CommandSender sender, String[] parameters) {
                 setPermission("bkk.fp");
                 String message = messages.getString("messages.fallen-player").replace("{size}", Integer.toString(fallenPlayers.size()));
-                Msg.send(sender, message + '\n' + fallenPlayers);
+                Msg.send(sender, message + '\n' + fallenPlayers, messages.getString("messages.prefix"));
                 return true;
             }
 
             @Override
             public String getUsage() {
-                return "/fallenPlayers";
+                return messages.getString("messages.no-valid");
             }
         };
     }
