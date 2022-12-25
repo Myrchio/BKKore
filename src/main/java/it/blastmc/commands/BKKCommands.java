@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class BKKCommands {
-    private final FileConfiguration messages = Main.getPlugin(Main.class).getMessages();
+    private final FileConfiguration messages = Main.getInstance().messages.getCustomConfig();
     public BKKCommands() {
         new CommandHandler("bkk", 1){
             @Override

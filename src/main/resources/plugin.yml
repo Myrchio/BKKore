@@ -1,4 +1,5 @@
 main: it.blastmc.Main
 name: BKKore
 version: 0.0.3
+depend: [WorldGuard, EnchantedGangs]
 softdepend: [PlaceholderAPI]

@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 public abstract class CommandHandler extends BukkitCommand implements CommandExecutor {
     private final int minArgs, maxArgs;
 
-    private final FileConfiguration messages = Main.getPlugin(Main.class).getMessages();
+    private final FileConfiguration messages = Main.getInstance().messages.getCustomConfig();
 
     public CommandHandler(String name) {
         this(name, 0);

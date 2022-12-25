@@ -13,6 +13,10 @@ public class FallenPlayerList {
         fallenPlayers = new ArrayList<>();
     }
 
+    public ArrayList<UUID> get() {
+        return fallenPlayers;
+    }
+
     public boolean search(UUID uuid) {
         for (UUID fallenPlayerUUID : fallenPlayers) {
             if (uuid == fallenPlayerUUID) {

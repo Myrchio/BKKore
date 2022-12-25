@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class FallenPlayerCommands {
-    private final FileConfiguration messages = Main.getPlugin(Main.class).getMessages();
+    private final FileConfiguration messages = Main.getInstance().messages.getCustomConfig();
     private final FallenPlayerList fallenPlayers = Main.getInstance().fallenPlayerList;
     public FallenPlayerCommands(){
         new CommandHandler("fallenPlayers"){
