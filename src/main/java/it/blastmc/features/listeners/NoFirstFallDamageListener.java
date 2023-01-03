@@ -35,7 +35,7 @@ public class NoFirstFallDamageListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent p) {
         Position po = new Position (p.getPlayer().getLocation());
         UUID uuid = p.getPlayer().getUniqueId();
-        if (!po.isInRegion(BuildLocation(pos1), BuildLocation(pos2)) && fallenPlayers.search(uuid)){
+        if (!po.isInRegion(BuildLocation(pos1), BuildLocation(pos2)) && !fallenPlayers.search(uuid)){
             fallenPlayers.add(uuid);
         }
     }

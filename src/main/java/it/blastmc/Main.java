@@ -12,14 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
     private static Main instance;
-    public final CustomConfig messages = new CustomConfig("messages.yml");
+    public CustomConfig messages;
     public final FallenPlayerList fallenPlayerList = new FallenPlayerList();
     public Main() {
         instance = this;
     }
     @Override
     public void onEnable() {
-        System.out.println(getPrefix() + "Plugin abilitato con successo!");
+        messages = new CustomConfig("messages.yml");
         getConfig().options().copyDefaults(true);
         saveConfig();
         getEvents();
@@ -27,6 +27,7 @@ public class Main extends JavaPlugin {
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new PlaceHolderAPIHook().register();
         }
+        System.out.println(getPrefix() + "Plugin abilitato con successo!");
     }
     @Override
     public void onDisable() {
@@ -37,9 +38,9 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockTimedListener(), this);
         if (this.getConfig().getBoolean("no-first-fall-damage.enabled")){
             getServer().getPluginManager().registerEvents(new NoFirstFallDamageListener(), this);
-            System.out.println("\\u001B[32m" + "+ No first fall damage");
+            System.out.println("+ No first fall damage");
         } else {
-            System.out.println("\\u001B[31m" + "- No first fall damage");
+            System.out.println("- No first fall damage");
         }
     }
     private void getCommands(){
@@ -49,6 +50,12 @@ public class Main extends JavaPlugin {
 
     public String getPrefix(){
         return messages.getCustomConfig().getString("messages.prefix");
+    }
+
+    @Override
+    public void reloadConfig() {
+        super.reloadConfig();
+        messages.loadCustomConfig();
     }
 
     public static Main getInstance() {return instance;}

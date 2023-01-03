@@ -1,31 +1,34 @@
 package it.blastmc.features.customConfig;
 
+import it.blastmc.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class CustomConfig extends JavaPlugin {
+public class CustomConfig{
     private final String fileName;
 
-    private final FileConfiguration fileConfiguration;
+    private final Plugin plugin = Main.getInstance();
+
+    private FileConfiguration fileConfiguration;
 
     public CustomConfig(String fileName) {
         this.fileName = fileName;
-        fileConfiguration = loadCustomConfig();
+        loadCustomConfig();
     }
 
-    public FileConfiguration loadCustomConfig() {
-        File out = new File(getDataFolder(), fileName);
+    public void loadCustomConfig() {
+        File out = new File(plugin.getDataFolder(), fileName);
         try {
-            InputStream in = getResource(fileName);
+            InputStream in = plugin.getResource(fileName);
 
             if (!out.exists()){
-                getDataFolder().mkdir();
+                plugin.getDataFolder().mkdir();
                 out.createNewFile();
             }
             FileConfiguration file = YamlConfiguration.loadConfiguration(out);
@@ -35,7 +38,7 @@ public class CustomConfig extends JavaPlugin {
                 file.options().copyDefaults(true);
                 file.save(out);
             }
-            return file;
+            this.fileConfiguration = file;
 
         }catch (IOException e) {
             throw new RuntimeException(e);
@@ -43,7 +46,7 @@ public class CustomConfig extends JavaPlugin {
     }
     public FileConfiguration getCustomConfig(){
         if (this.fileConfiguration == null) {
-            this.reloadConfig();
+            plugin.reloadConfig();
         }
         return this.fileConfiguration;
     }

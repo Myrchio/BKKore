@@ -19,6 +19,16 @@ no-first-fall-damage:
   position-A: 0:0:0:world
   position-B: 0:0:0:world
 
+drop-filter:
+  enabled: true
+  items:
+    - DIAMOND_SWORD
+    - DIAMOND_HELMET
+    - DIAMOND_CHESTPLATE
+    - DIAMOND_LEGGINGS
+    - DIAMOND_BOOTS
+    - BOW
+
 kill-reward:
   enabled: false
   # use format N-KILL:"COMMAND" or N-KILL:"COMMAND":"MESSAGE"
